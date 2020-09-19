@@ -1,0 +1,39 @@
+\section{Filtro pasabajos de primer orden}\label{sec:filtro_pasabajos_primer_orden}
+Aplicando la transformada de Laplace \cite{10.5555/248702} a la ecuación~\ref{eq:ecuacion_diferencial_leaky}, se obtiene:
+\[
+     \tau.\big(s .V(s) + v(0^-)\big) + V(s)= I(s)
+\]
+como la condición inicial es $v(0^-)=0$
+\[
+     \tau.s .V(s) + V(s)= R.I(s)
+\]
+\[
+    V(s).\big( \tau.s + 1\big) = R.I(s)
+\]
+Finalmente se obtiene la \textit{función transferencia} del circuito, definida como el cociente entre la señal de salida y la señal de entrada:
+\begin{equation}\label{eq:respuesta_en_frecuencia_filtro_RC}
+     \tcbhighmath[boxrule=1pt,arc=1pt,colback=blue!10!white,colframe=black]{H(s)=\frac{V(s)}{I(s)} = \frac{R}{(\tau.s+ 1)}=\frac{1}{c}.\frac{1}{(s+\frac{1}{\tau})}}
+\end{equation}
+con la región de convergencia ROC=\big\{$\Re{s}>-\frac{1}{\tau}$\}\big.
+Aplicando la transformada inversa de Laplace, se obtiene la respuesta al impulso:
+\[
+\tcbhighmath[fuzzy halo=1mm with blue!50!white,arc=2pt,
+  boxrule=0pt,frame hidden]{h(t)= \frac{1}{c}.e^{-\frac{1}{\tau}.t}.u(t)}
+\]
+La ecuación~\ref{eq:respuesta_en_frecuencia_filtro_RC} es la función transferencia de un \textit{filtro pasabajos} \cite{dorf2013introduction}.
+Como el sistema está descrito por una ecuación diferencial lineal, de coeficientes constantes (ver ecuación ~\ref{eq:ecuacion_diferencial_leaky}) y tiene condición inicial nula, dicho sistema es LTI. Se trata entonces, de un sistema de primer orden, lineal\footnote{Un elemento es \textit{lineal} si cumple con la propiedad de superposición, es decir, si $i_1$ produce la salida $v_1$ e $i_2$ produce la salida $v_2$ entonces la entrada $i_1+i_2$ produce la salida $v_1+v_2$; y si cumple con la propiedad de homogeneidad, es decir, si una entrada i produce una salida v, entonces al multiplicar por una constante a la entrada (k.i) produce como salida k.v} e invariante en el tiempo\footnote{Sistema invariante en el tiempo significa un corrimiento de tiempo en la señal de entrada produce un corrimiento de tiempo en la señal de salida. Si la salida y(t) corresponde a la entrada x(t), un sistema invariante en el tiempo tendrá una salida y($t-t_0$) para una entrada $x(t-t_0$)} \cite{10.5555/248702}.
+\newpage
+\subsubsection{Respuesta al escalón}\label{sec:respuesta_escalon}
+Tomando como entrada $i(t)=i_0.u(t)$ (la entrada es la función escalón de altura $i_0$), se busca a continuación la tensión de salida correspondiente (respuesta al escalón).\\
+La transformada de Laplace de la respuesta al escalón es\cite{10.5555/248702}:
+\[V_{esc}(s)=H(s).I(s)=H(s).\frac{i_0}{s}=\]
+\[=\frac{1}{c}.\frac{1}{\big(s+\frac{1}{\tau}\big)} . \frac{i_0}{s}=\]
+\[= \frac{i_0}{c}.\Bigg[\frac{\tau}{s}-\frac{\tau}{(s+\frac{1}{\tau})}\Bigg]\]
+\[con\ ROC=\big\{\Re{s}>0\big\}\]
+Aplicando la transformada inversa de Laplace\cite{10.5555/248702}:
+\[v_{esc}(t)=\frac{i_0}{c}.\Bigg[\tau.u(t)-\tau.e^{-\frac{t}{\tau}}.u(t)\Bigg]=\]
+\[=\frac{i_0}{c}.\tau.[1-e^{-\frac{t}{\tau}}].u(t)\]
+entonces la respuesta al escalón es: 
+\begin{equation}\label{eq:respuesta_escalon_leaky_integrator}
+    \tcbhighmath[boxrule=1pt,arc=1pt,colback=blue!10!white,colframe=black]{v_{esc}(t)=i_0.R.[1-e^{-\frac{t}{\tau}}].u(t)}
+\end{equation}

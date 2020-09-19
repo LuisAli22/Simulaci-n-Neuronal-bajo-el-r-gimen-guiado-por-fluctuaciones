@@ -1,0 +1,66 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{authblk}
+\usepackage[table]{xcolor}
+\usepackage{multirow}
+\usepackage{abstract}
+\usepackage[font={small,it}]{caption}
+\usepackage{subcaption}
+\usepackage{sidecap}
+\usepackage{placeins}
+\usepackage{lipsum}
+\usepackage{physics}
+\usepackage{titlesec}
+\usepackage[skins,theorems]{tcolorbox}
+\tcbset{highlight math style={enhanced,
+  colframe=red,colback=white,arc=0pt,boxrule=1pt}}
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{bibliography.bib}
+\titleformat{\chapter}{\normalfont\huge\bfseries}{\thechapter.}{20pt}{\huge}
+\renewcommand{\absnamepos}{empty}
+\usepackage[
+  a4paper,     
+  top=25mm,
+  bottom=25mm,
+  width=169mm,
+  bindingoffset=6mm,
+  headheight=17pt, % as per the warning by fancyhdr
+  heightrounded, % to avoid spurious underfull messages
+]{geometry} 
+\usepackage{fancyhdr,graphicx,lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\rightmark} 
+\fancyfoot[L, RO]{\thepage}
+\fancyfoot[LO, C]{75.26 Trabajo práctico final}
+\fancyfoot[CO]{Ali, Luis}
+\renewcommand{\headrulewidth}{0.4pt}
+\begin{document}
+\input{titlepage}
+\input{abstract}
+\tableofcontents
+\newpage{}
+\chapter{Introducción}
+\input{chapters/introducción}
+\chapter{Régimen guiado por fluctuaciones}
+\input{chapters/chapter_2}
+\appendix
+\chapter{Biología de la neurona}
+\input{chapters/apendice_A}
+\chapter{Modelos de neurona}
+\input{chapters/apendice_B}
+\chapter{Conceptos electrónicos}
+\input{chapters/apendice_C}
+\printbibliography[
+    heading=bibintoc,
+    title={Referencia completa}
+]
+\clearpage
+\printbibliography[heading=subbibintoc,type=article,title={Referencias a artículos}]
+\printbibliography[heading=subbibintoc,type=book,title={Referencias a libros}]
+\printbibliography[heading=subbibintoc,type=online,title={Referencias en línea}]
+\end{document}
